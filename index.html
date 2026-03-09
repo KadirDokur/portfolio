@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Portfolio</title>
+<style>
+body{
+ background:#0a0a0a;
+ color:#00ff9c;
+ font-family:Consolas,monospace;
+ margin:0;
+}
+header{
+ padding:30px;
+ border-bottom:1px solid #00ff9c;
+ text-align:center;
+ background:rgba(0,0,0,0.9);
+}
+nav a{
+ margin:0 15px;
+ color:#00ff9c;
+ text-decoration:none;
+}
+section{
+ padding:40px;
+ max-width:900px;
+ margin:60px auto;
+ background:rgba(0,0,0,0.88);
+ border:1px solid rgba(0,255,156,0.25);
+ border-radius:12px;
+ backdrop-filter:blur(2px);
+}
+h2{
+ margin-bottom:25px;
+ letter-spacing:2px;
+}
+.card{
+ border:1px solid #00ff9c;
+ padding:20px;
+ margin-top:20px;
+ background:#050505;
+ border-radius:10px;
+}
+footer{
+ text-align:center;
+ padding:20px;
+ border-top:1px solid #00ff9c;
+ background:rgba(0,0,0,0.9);
+ margin-top:60px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>> piotr.exe</h1>
+<p>Cybersecurity • Penetration Testing • Networking</p>
+<nav>
+<a href="#about">about</a>
+<a href="#projects">projects</a>
+<a href="#skills">skills</a>
+<a href="#contact">contact</a>
+</nav>
+</header>
+
+<section id="about">
+<h2>> whoami</h2>
+<p>Cybersecurity ve penetration testing alanında kendini geliştiren bir araştırmacı. Web güvenliği, ağ analizi ve zafiyet araştırmaları üzerine çalışıyorum.</p>
+</section>
+
+<section id="projects">
+<h2>> projects</h2>
+
+<div class="card">
+<h3><a href="projects/port-scanner.html">port-scanner.py</a></h3>
+<p>#PLACEHOLDER</p>
+</div>
+
+<div class="card">
+<h3><a href="projects/hash-cracker.html">hash-cracker</a></h3>
+<p>#PLACEHOLDER</p>
+</div>
+
+<div class="card">
+<h3><a href="projects/http-analyzer.html">http-request-analyzer</a></h3>
+<p>#PLACEHOLDER</p>
+</div>
+
+</section>
+
+<section id="skills">
+<h2>> skills</h2>
+<p>Linux • Python • Networking • Nmap • Burp Suite • Wireshark • Bash</p>
+</section>
+
+<section id="contact">
+<h2>> contact</h2>
+<p>Email: yourmail@proton.me</p>
+<p>GitHub: github.com/username</p>
+</section>
+
+<footer>
+<p>root@portfolio:~$</p>
+</footer>
+
+<canvas id="matrix"></canvas>
+<script>
+const canvas=document.getElementById('matrix');
+const ctx=canvas.getContext('2d');
+canvas.style.position='fixed';
+canvas.style.top='0';
+canvas.style.left='0';
+canvas.style.zIndex='-1';
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const letters='01アカサタナハマヤラワABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const fontSize=16;
+const columns=Math.floor(canvas.width/fontSize);
+const drops=Array(columns).fill(1);
+
+function draw(){
+ ctx.fillStyle='rgba(0,0,0,0.05)';
+ ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle='#00ff9c';
+ ctx.font=fontSize+'px monospace';
+ for(let i=0;i<drops.length;i++){
+  const text=letters[Math.floor(Math.random()*letters.length)];
+  ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+  if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+    drops[i]=0;
+  }
+  drops[i]++;
+ }
+}
+setInterval(draw,33);
+</script>
+</body>
+</html>
