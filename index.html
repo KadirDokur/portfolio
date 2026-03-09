@@ -1,144 +1,130 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber Portfolio</title>
+<title>Piotr's Cyber Portfolio</title>
 <style>
-body{
- background:#0a0a0a;
- color:#00ff9c;
- font-family:Consolas,monospace;
- margin:0;
+body {
+  margin: 0;
+  background: #0a0a0a;
+  color: #00ff9c;
+  font-family: Consolas, monospace;
 }
-header{
- padding:30px;
- border-bottom:1px solid #00ff9c;
- text-align:center;
- background:rgba(0,0,0,0.9);
+#content {
+  width: 60%;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(0,0,0,0.9);
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
 }
-nav a{
- margin:0 15px;
- color:#00ff9c;
- text-decoration:none;
+canvas {
+  position: fixed;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  z-index: 0;
 }
-section{
- padding:40px;
- max-width:900px;
- margin:60px auto;
- background:rgba(0,0,0,0.88);
- border:1px solid rgba(0,255,156,0.25);
- border-radius:12px;
- backdrop-filter:blur(2px);
-}
-h2{
- margin-bottom:25px;
- letter-spacing:2px;
-}
-.card{
- border:1px solid #00ff9c;
- padding:20px;
- margin-top:20px;
- background:#050505;
- border-radius:10px;
-}
-footer{
- text-align:center;
- padding:20px;
- border-top:1px solid #00ff9c;
- background:rgba(0,0,0,0.9);
- margin-top:60px;
+#canvas-left { left: 0; }
+#canvas-right { right: 0; }
+h2 { margin-bottom: 25px; letter-spacing: 2px; }
+.card { border: 1px solid #00ff9c; padding: 20px; margin-top: 20px; background: #050505; border-radius: 10px; }
+nav a { margin: 0 15px; color: #00ff9c; text-decoration: none; }
+header {
+  padding: 30px;
+  border-bottom: 1px solid #00ff9c;
+  text-align: center;
+  background: rgba(0,0,0,0.9);
 }
 </style>
 </head>
 <body>
 
+<canvas id="canvas-left"></canvas>
+<canvas id="canvas-right"></canvas>
+
+<div id="content">
 <header>
-<h1>> KEREM ABİYE GİR</h1>
-<p>OGGGHHHHHHHHH</p>
-<nav>
-<a href="#about">KEREMK</a>
-<a href="#projects">KERREAM</a>
-<a href="#skills">KEREMSKİ</a>
-<a href="#contact">KEREMSKNKOWBOY</a>
-</nav>
+  <h1>> Piotr</h1>
+  <nav>
+    <a href="#whoami">whoami</a>
+    <a href="#about">about</a>
+    <a href="#projects">projects</a>
+    <a href="#skills">skills</a>
+  </nav>
 </header>
 
-<section id="about">
+<section id="whoami">
 <h2>> whoami</h2>
-<p>KEREM ABİYE GİRMEK İÇİN EN SIK KULLANILAN 31 YÖNTEM</p>
+<p>Cybersecurity enthusiast & portfolio developer.</p>
+</section>
+
+<section id="about">
+<h2>> about</h2>
+<p>Welcome to my cyber portfolio. I build and test small security tools, learn networking, and experiment with Python projects.</p>
 </section>
 
 <section id="projects">
 <h2>> projects</h2>
-
 <div class="card">
 <h3><a href="projects/port-scanner.html">port-scanner.py</a></h3>
-<p>#PLACEHOLDER</p>
+<p>Python ile yazılmış basit bir TCP port tarayıcı.</p>
 </div>
-
 <div class="card">
 <h3><a href="projects/hash-cracker.html">hash-cracker</a></h3>
-<p>#PLACEHOLDER</p>
+<p>Wordlist kullanarak hash kırmayı deneyen script.</p>
 </div>
-
 <div class="card">
 <h3><a href="projects/http-analyzer.html">http-request-analyzer</a></h3>
-<p>#PLACEHOLDER</p>
+<p>HTTP request ve response yapılarını analiz eden küçük araç.</p>
 </div>
-
 </section>
 
 <section id="skills">
 <h2>> skills</h2>
-<p>Linux • Python • Networking • Nmap • Burp Suite • Wireshark • Bash</p>
-</section>
-
-<section id="contact">
-<h2>> contact</h2>
-<p>Email: yourmail@proton.me</p>
-<p>GitHub: github.com/username</p>
+<div class="card">
+<p>Python, Networking, Linux, Penetration Testing, Git</p>
+</div>
 </section>
 
 <footer>
-<p>root@portfolio:~$</p>
+<p>© 2026 Piotr Cyber Portfolio</p>
 </footer>
 
-<canvas id="matrix"></canvas>
 <script>
-const canvas=document.getElementById('matrix');
-const ctx=canvas.getContext('2d');
-canvas.style.position='fixed';
-canvas.style.top='0';
-canvas.style.left='0';
-canvas.style.zIndex='-1';
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+function initMatrix(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth;
+  canvas.height = window.innerHeight;
 
-const letters = ['KEREME','GİR'];
-const fontSize=16;
-const columns=Math.floor(canvas.width/fontSize);
-const drops=Array(columns).fill(1);
+  const letters = ['KEREME','GİR'];
+  const fontSize = 16;
+  const columns = Math.floor(canvas.width / fontSize);
+  const drops = Array(columns).fill(1);
 
-function draw(){
- ctx.fillStyle='rgba(0,0,0,0.05)';
- ctx.fillRect(0,0,canvas.width,canvas.height);
- ctx.fillStyle='#00ff9c';
- ctx.font=fontSize+'px monospace';
- for(let i=0;i<drops.length;i++){
-  const word = letters[Math.floor(Math.random() * letters.length)];
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#00ff9c';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+      const word = letters[Math.floor(Math.random() * letters.length)];
     ctx.fillText(word, i * fontSize, drops[i] * fontSize);
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-    drops[i]=0;
+      drops[i]++;
+    }
   }
-  drops[i]++;
- }
+  setInterval(draw, 50);
 }
-setInterval(draw,33);
+
+if(window.innerWidth >= 768){
+  initMatrix('canvas-left');
+  initMatrix('canvas-right');
+}
 </script>
+
 </body>
 </html>
-
-
-
-
