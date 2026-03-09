@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Piotr's Cyber Portfolio</title>
+<title>Kerem's Cyber Portfolio</title>
 <style>
 body {
   margin: 0;
@@ -47,23 +47,22 @@ header {
 
 <div id="content">
 <header>
-  <h1>> KEREME GİR OH OH OH</h1>
+  <h1>> Kerem</h1>
   <nav>
-    <a href="#KEREMSKİ">whoami</a>
-    <a href="#KEREMK">about</a>
-    <a href="#KERAM">projects</a>
-    <a href="#KEREMPU">skills</a>
+    <a href="#whoami">whoami</a>
+    <a href="#about">about</a>
+    <a href="#projects">projects</a>
   </nav>
 </header>
 
 <section id="whoami">
 <h2>> whoami</h2>
-<p>KEREME GİR GİR GİR Hİ HE HE HE HE HE</p>
+<p>Cybersecurity enthusiast & portfolio developer.</p>
 </section>
 
 <section id="about">
 <h2>> about</h2>
-<p>KEREMİ ZIPLAT ZIPLAT OH OH OH OGGGGGGHHHHHHHH</p>
+<p>Welcome to my cyber portfolio. I build and test small security tools, learn networking, and experiment with Python projects.</p>
 </section>
 
 <section id="projects">
@@ -90,7 +89,7 @@ header {
 </section>
 
 <footer>
-<p>© 2026 Piotr Cyber Portfolio</p>
+<p>© 2026 Kerem Cyber Portfolio</p>
 </footer>
 
 <script>
@@ -100,7 +99,7 @@ function initMatrix(canvasId) {
   canvas.width = canvas.offsetWidth;
   canvas.height = window.innerHeight;
 
-  const letters = ['KEREME','GİR'];
+  const letters = '01アカサタナハマヤラワABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const fontSize = 16;
   const columns = Math.floor(canvas.width / fontSize);
   const drops = Array(columns).fill(1);
@@ -111,9 +110,9 @@ function initMatrix(canvasId) {
     ctx.fillStyle = '#00ff9c';
     ctx.font = fontSize + 'px monospace';
     for (let i = 0; i < drops.length; i++) {
-      const word = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(word, i * fontSize, drops[i] * fontSize);
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     }
   }
