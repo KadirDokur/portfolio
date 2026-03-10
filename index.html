@@ -3,22 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kadir's Cyber Portfolio</title>
+<title>Kerem's Cyber Portfolio</title>
 <style>
+.rootprompt{
+  color:#ff2b2b;
+  font-weight:bold;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff3b3b;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff3b3b; }
+  to { text-shadow: 0 0 10px #ff4a4a, 0 0 20px #ff2b2b, 0 0 30px #ff5c5c; }
+}
 body {
   margin: 0;
   background: #0a0a0a;
   color: #00ff9c;
   font-family: Consolas, monospace;
+  min-height: 100vh;
 }
 #content {
   width: 60%;
   margin: 0 auto;
   padding: 40px;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,1);
   border-radius: 10px;
   position: relative;
   z-index: 1;
+  min-height: 100vh;
 }
 canvas {
   position: fixed;
@@ -30,8 +42,28 @@ canvas {
 #canvas-left { left: 0; }
 #canvas-right { right: 0; }
 h2 { margin-bottom: 25px; letter-spacing: 2px; }
-.card { border: 1px solid #00ff9c; padding: 20px; margin-top: 20px; background: #050505; border-radius: 10px; }
-nav a { margin: 0 15px; color: #00ff9c; text-decoration: none; }
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px}
+.card{
+  border:1px solid #00ff9c;
+  padding:20px;
+  background:#050505;
+  border-radius:10px;
+  transition:0.2s;
+  box-shadow: 0 0 5px #00ff9c;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px #00ff9c, 0 0 30px #00ff9c;
+}
+nav a {
+  margin: 0 15px;
+  color: #00ff9c;
+  text-decoration: none;
+  transition: text-shadow 0.5s;
+}
+nav a:hover {
+  text-shadow: 0 0 10px #00ff9c, 0 0 20px #00ff9c;
+}
 header {
   padding: 30px;
   border-bottom: 1px solid #00ff9c;
@@ -50,48 +82,45 @@ header {
   <h1>> Kadir Dokur</h1>
   <p>Cybersecurity • Malware Analysis • Networking</p>
   <nav>
-    <a href="#whoami">whoami</a>
-    <a href="#about">about</a>
+    <a href="about.html">about</a>
+    <a href="whoami.html">whoami</a>
     <a href="#projects">projects</a>
+    <a href="contact.html">contact</a>
   </nav>
 </header>
 
-<section id="whoami">
-<h2>> whoami</h2>
-<p>Cybersecurity enthusiast & portfolio developer.</p>
-</section>
-
-<section id="about">
-<h2>> about</h2>
-<p>Welcome to my cyber portfolio. I build and test small security tools, learn networking, and experiment with Python projects.</p>
+<section id="terminal" style="margin-top:20px;margin-bottom:40px;border:1px solid #00ff9c;padding:20px;background:#000;border-radius:10px">
+<div id="terminal-output" style="min-height:120px;margin-bottom:10px"></div>
+<div>
+<span class="rootprompt">root#</span>
+</div>
 </section>
 
 <section id="projects">
 <h2>> projects</h2>
+<div class="projects-grid">
 <div class="card">
-<h3><a href="projects/port-scanner.html">port-scanner.py</a></h3>
-<p>Python ile yazılmış basit bir TCP port tarayıcı.</p>
+<h3><a href="projects/port-scanner.html">port-scanner</a></h3>
+<p>Language: Python</p>
+<p>Category: Networking</p>
 </div>
 <div class="card">
 <h3><a href="projects/hash-cracker.html">hash-cracker</a></h3>
-<p>Wordlist kullanarak hash kırmayı deneyen script.</p>
+<p>Language: Python</p>
+<p>Category: Security</p>
 </div>
 <div class="card">
-<h3><a href="projects/http-analyzer.html">http-request-analyzer</a></h3>
-<p>HTTP request ve response yapılarını analiz eden küçük araç.</p>
+<h3><a href="projects/http-analyzer.html">http-analyzer</a></h3>
+<p>Language: Python</p>
+<p>Category: Web</p>
 </div>
-</section>
-
-<section id="skills">
-<h2>> skills</h2>
 <div class="card">
-<p>Python, C, Bash, Networking, Linux, Penetration Testing, Wireshark, </p>
+<h3><a href="projects/packet-sniffer.html">packet-sniffer</a></h3>
+<p>Language: Python</p>
+<p>Category: Networking</p>
+</div>
 </div>
 </section>
-
-<footer>
-<p>root@portfolio:~$</p>
-</footer>
 
 <script>
 function initMatrix(canvasId) {
@@ -99,12 +128,10 @@ function initMatrix(canvasId) {
   const ctx = canvas.getContext('2d');
   canvas.width = canvas.offsetWidth;
   canvas.height = window.innerHeight;
-
   const letters = '01アカサタナハマヤラワABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const fontSize = 16;
   const columns = Math.floor(canvas.width / fontSize);
   const drops = Array(columns).fill(1);
-
   function draw() {
     ctx.fillStyle = 'rgba(0,0,0,0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -117,16 +144,58 @@ function initMatrix(canvasId) {
       drops[i]++;
     }
   }
-  setInterval(draw, 50);
+  setInterval(draw, 80);
 }
-
 if(window.innerWidth >= 768){
   initMatrix('canvas-left');
   initMatrix('canvas-right');
 }
+
+// terminal hint stream
+const output = document.getElementById('terminal-output');
+const hints = [
+"tip: use 'ls -la' to view hidden files in linux",
+"tip: 'netstat -tulnp' shows listening ports",
+"cyber: always verify open ports after a scan",
+"tip: 'grep' is powerful for log analysis",
+"security: never trust user input",
+"linux: 'chmod +x script.sh' makes a script executable",
+"networking: port 443 usually runs HTTPS",
+"malware: analyze suspicious files inside a sandbox",
+"tip: 'history' shows previously used commands",
+"security: strong passwords > complex passwords",
+"cyber: enumeration is the most important hacking phase"
+];
+const hintLine = document.createElement('div');
+hintLine.style.transition = 'opacity 0.8s';
+hintLine.style.opacity = '0';
+hintLine.style.color = '#ff2bd6';
+output.appendChild(hintLine);
+function showHint(){
+ const text = hints[Math.floor(Math.random()*hints.length)];
+ hintLine.style.opacity = '0';
+ setTimeout(()=>{
+   const parts = text.split(':');
+   let colored = text;
+   if(parts.length > 1){
+     const tag = parts[0];
+     const rest = parts.slice(1).join(':');
+     let color = '#ff2bd6';
+     if(tag === 'tip') color = '#00ffd5';
+     if(tag === 'cyber') color = '#ff2bd6';
+     if(tag === 'linux') color = '#7cff00';
+     if(tag === 'security') color = '#ffaa00';
+     if(tag === 'networking') color = '#00a2ff';
+     if(tag === 'malware') color = '#ff3b3b';
+     colored = `<span style="color:${color}">${tag}:</span>${rest}`;
+   }
+   hintLine.innerHTML = '<span class="rootprompt">root#</span> ' + colored;
+   hintLine.style.opacity = '1';
+ },400);
+}
+setInterval(showHint,5000);
+showHint();
 </script>
 
 </body>
 </html>
-
-
