@@ -1,62 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Network Monitor</title>
+
 <style>
 body{
-background:#0a0a0a;
-color:#00ff9c;
-font-family:Consolas,monospace;
-padding:40px;
+  background:#0a0a0a;
+  color:#00ff9c;
+  font-family:Consolas,monospace;
+  padding:40px;
 }
-a{color:#00ff9c}
-</style>
-</head>
 
-<body>
+/* SECTION TITLE */
+.section-title{
+  color:#00ff9c;
+  font-weight:bold;
+  text-shadow:0 0 8px #00ff9c;
+  margin-top:25px;
+}
 
-<h1>> network-monitor</h1>
+/* DESCRIPTION */
+.desc{
+  color:rgba(0,255,156,0.65);
+  line-height:1.6;
+  margin-top:5px;
+}
 
-<p>
-A Python-based network monitoring tool designed to observe real-time traffic,
-analyze connections, and provide insights into network activity.
-Built for learning and practical network analysis.
-</p>
+/* LIST */
+ul li{
+  color:rgba(0,255,156,0.75);
+  margin-bottom:5px;
+}
 
-<h2>> Features</h2>
-<ul>
-<li>Real-time traffic monitoring</li>
-<li>Active connection tracking</li>
-<li>Basic packet inspection</li>
-<li>Lightweight CLI interface</li>
-</ul>
-
-<h2>> Technologies</h2>
-<ul>
-<li>Python</li>
-<li>Socket / Scapy</li>
-<li>Networking fundamentals</li>
-</ul>
-
-<h2>> Purpose</h2>
-<p>
-Developed to understand how network communication works and how traffic
-can be monitored in a controlled environment.
-</p>
-
-<br>
-
-<h2>> source</h2>
-<a href="https://github.com/KadirDokur/portfolio">view on github</a>
-
-<a href="../index.html" class="back-btn">← back to home</a>
-
-<style>
+/* BACK BUTTON */
 .back-btn{
   display:inline-block;
-  margin-top:20px;
+  margin-top:40px;
   padding:10px 15px;
   border:1px solid #00ff9c;
   color:#00ff9c;
@@ -69,9 +49,42 @@ can be monitored in a controlled environment.
   box-shadow:0 0 10px #00ff9c;
   text-shadow:0 0 10px #00ff9c;
 }
-</style>
 
- 
+</style>
+</head>
+
+<body>
+
+<h1>> network-monitor</h1>
+
+<p class="desc">
+A Python-based network monitoring tool designed to observe real-time traffic,
+analyze connections, and provide insights into network activity.
+Built for learning and practical network analysis.
+</p>
+
+<h2 class="section-title">> Features</h2>
+<ul>
+<li>Real-time traffic monitoring</li>
+<li>Active connection tracking</li>
+<li>Basic packet inspection</li>
+<li>Lightweight CLI interface</li>
+</ul>
+
+<h2 class="section-title">> Technologies</h2>
+<ul>
+<li>Python</li>
+<li>Socket / Scapy</li>
+<li>Networking fundamentals</li>
+</ul>
+
+<h2 class="section-title">> Purpose</h2>
+<p class="desc">
+Developed to understand how network communication works and how traffic
+can be monitored in a controlled environment.
+</p>
+
+<a href="../index.html" class="back-btn">← back to home</a>
 
 </body>
 </html>
